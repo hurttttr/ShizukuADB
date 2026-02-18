@@ -1,0 +1,41 @@
+{
+  "name": "Android Dev",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/android-sdk:1": {
+      "version": "latest",
+      "installNdk": false
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "vscjava.vscode-gradle"
+      ],
+      "settings": {
+        "java.home": "/usr/lib/jvm/msopenjdk-current",
+        "android.sdk.path": "/usr/local/lib/android/sdk"
+      }
+    }
+  },
+  
+  "postCreateCommand": "sudo chmod 777 /usr/local/lib/android/sdk -R && echo 'SDK ready'",
+  
+  "remoteUser": "vscode",
+  
+  "forwardPorts": [8080],
+  
+  "portsAttributes": {
+    "8080": {
+      "label": "Test Server",
+      "onAutoForward": "notify"
+    }
+  }
+}
